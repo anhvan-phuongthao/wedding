@@ -20,9 +20,26 @@
 <body>
 
 <!-- PRELOADER -->
-<div id="preloader">
-  <div class="loader-heart">❤</div>
+ <!-- 🔹 MÀN HÌNH CHUẨN BỊ THIỆP -->
+<div id="loading-screen" >
+    <div class="card">
+        <h2  style="
+  font-family: 'UVN Hoa Tay 1', cursive;
+  color: #b76e79;
+  letter-spacing: 2px;
+  font-size: 28px;
+">💍 Anh Văn & Phương Thảo</h1>
+        <p class="loading-text">Đang chuẩn bị thiệp mời...</p>
+
+        <div class="progress-wrap">
+            <div id="progress-bar"></div>
+        </div>
+        <span id="progress-percent">0%</span>
+
+        <button id="open-card" style="display:none;">💌 Mở Thiệp</button>
+    </div>
 </div>
+
 
 <!-- HEADER -->
 <header class="hero">
@@ -55,16 +72,16 @@
   </div>
 
   <!-- MUSIC -->
-  <div class="music-control" onclick="toggleMusic()">
-    ▶
-    <span>Chạm để phát nhạc</span>
-  </div>
+<!-- 🔹 NHẠC -->
+<audio id="bg-music" loop>
+    <source src="mp3/nhacnen.mp3" type="audio/mpeg">
+</audio>
 
-  <audio id="bgMusic" loop>
-    <source src="assets/music/wedding.mp3" type="audio/mpeg">
-  </audio>
+<!-- 🔹 NÚT PAUSE / PLAY -->
+<button id="music-btn">⏸</button>
 
 </header>
+
 
 
 <!-- 2 bên gia đình-->
@@ -76,7 +93,7 @@
   <div class="family-parents" data-aos="fade-up" data-aos-delay="200">
     <div class="family-col">
       <h3>NHÀ TRAI</h3>
-      <p>ÔNG: NGUYỄN VĂN KÝ
+      <p>ÔNG: NGUYỄN VĂN KÝ</p>
       <p>BÀ: LÊ THỊ THANH</p>
       <p>Số nhà 1, Tiểu Khu Tập Cát 2, xã Nông Cống</p>
       <p>Thanh Hóa</p>
@@ -114,7 +131,6 @@
   </div>
 </section>
 
-
 <!-- end 2 bên gia đình -->
 <!--Time line-->
 <section class="wedding-timeline">
@@ -129,14 +145,14 @@
 
     <div class="timeline-item active" data-aos="fade-up" data-aos-delay="200">
       <span class="dot"></span>
-      <h3>LỄ THÀNH HÔN</h3>
-      <p>10:00 • 22.01.2026</p>
+      <h3>BỮA CƠM THÂN MẬT</h3>
+      <p>17:00 • 21.01.2026</p>
     </div>
 
     <div class="timeline-item" data-aos="fade-up" data-aos-delay="400">
       <span class="dot"></span>
-      <h3>TIỆC CƯỚI</h3>
-      <p>11:00 • 22.01.2026</p>
+      <h3>LỄ THÀNH HÔN</h3>
+      <p>09:30 • 22.01.2026</p>
     </div>
   </div>
 </section>
@@ -317,6 +333,8 @@
   <span class="lb-next">›</span>
   <img class="lb-image" src="">
 </div>
+<div id="hearts-container"></div>
+
 <!-- end footer anh-->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script src="script.js"></script>
