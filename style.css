@@ -175,6 +175,43 @@ body {
         color: #fff;
     }
 
+    .hero-content {
+        justify-content: flex-start;
+        padding-top: 120px;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+    }
+
+    .save-date {
+        position: absolute;
+        bottom: 65px;
+      
+        transform: translateX(-50%);
+        margin-bottom: 0;
+        padding: 15px 25px;
+        width: 90%;
+        max-width: 300px;
+    }
+
+    .save-date span {
+        font-size: 12px;
+    }
+
+    .save-date strong {
+        font-size: 22px;
+    }
+
+    .cta {
+        position: absolute;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+
     .menu {
         display: none;
     }
@@ -182,10 +219,6 @@ body {
     .hamburger {
         display: block;
         font-size: 24px;
-    }
-
-    .hero-content h1 {
-        font-size: 42px;
     }
 }
 
