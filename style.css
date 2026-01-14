@@ -1112,5 +1112,64 @@ body {
     opacity: 0;
   }
 }
+/* thanks */
+.wedding-footer {
+  padding: 80px 20px 60px;
+  text-align: center;
+  background: transparent;
+  color: #7a4a52;
+}
+
+.footer-heart {
+  font-size: 32px;
+  color: #f472b6;
+  animation: heartbeat 1.8s infinite;
+  margin-bottom: 16px;
+}
+
+.footer-thank {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.footer-message {
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: 0.85;
+}
+
+.footer-names {
+  margin-top: 24px;
+  font-size: 42px;
+  color: #b76e79;
+  font-family: 'UVN Hoa Tay 1', cursive;
+}
+
+.footer-date {
+  margin-top: 12px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+@media (max-width: 768px) {
+  .footer-names {
+    font-size: 32px;
+  }
+
+  .footer-thank {
+    font-size: 18px;
+  }
+}
+.wedding-footer {
+  backdrop-filter: blur(4px);
+}
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
 
 
