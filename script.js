@@ -1,21 +1,43 @@
-// AOS
+// AOS - Tối ưu cho mobile
 AOS.init({
-  duration: 1000,
-  once: true
+  duration: 800,
+  once: true,
+  easing: 'ease-out',
+  // Disable AOS on mobile để tránh lag
+  disable: function() {
+    return window.innerWidth < 768;
+  }
 });
-//countdown
+//countdown - tối ưu cho mobile
 const weddingDate = new Date("2026-01-22T09:30:00").getTime();
 
-setInterval(() => {
-  const now = new Date().getTime();
+let lastSecond = -1;
+const countdownTimer = setInterval(() => {
+  const now = Date.now();
   const diff = weddingDate - now;
 
-  if (diff <= 0) return;
+  if (diff <= 0) {
+    clearInterval(countdownTimer);
+    return;
+  }
 
-  document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-  document.getElementById("hours").innerText = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  document.getElementById("minutes").innerText = Math.floor((diff / (1000 * 60)) % 60);
-  document.getElementById("seconds").innerText = Math.floor((diff / 1000) % 60);
+  const currentSecond = Math.floor((diff / 1000) % 60);
+  
+  // Chỉ cập nhật DOM khi cần thiết
+  if (currentSecond !== lastSecond) {
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    
+    requestAnimationFrame(() => {
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = currentSecond;
+    });
+    
+    lastSecond = currentSecond;
+  }
 }, 1000);
 //anh   footer
 const images = document.querySelectorAll(".love-img");
@@ -117,22 +139,27 @@ musicBtn.addEventListener("click", () => {
 const heartsContainer = document.getElementById('hearts-container');
 const heartTypes = [ '💗', '💖', '💕', '💞'];
 
-function createHearts(batch = 3) {
+function createHearts(batch = 2) {
+  // Giới hạn số hearts tối đa để tránh lag
+  if (heartsContainer.children.length > 15) return;
+  
   for (let i = 0; i < batch; i++) {
     const heart = document.createElement('div');
     heart.className = 'heart';
     heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
 
     heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.fontSize = 14 + Math.random() * 20 + 'px';
-    heart.style.animationDuration = 10 + Math.random() * 4 + 's';
-    heart.style.opacity = 0.6 + Math.random() * 0.4;
+    heart.style.fontSize = 12 + Math.random() * 16 + 'px';
+    heart.style.animationDuration = 8 + Math.random() * 3 + 's';
+    heart.style.opacity = 0.5 + Math.random() * 0.3;
 
     heartsContainer.appendChild(heart);
 
-    setTimeout(() => heart.remove(), 9000);
+    setTimeout(() => {
+      if (heart.parentNode) heart.remove();
+    }, 7000);
   }
 }
 
-// 🌸 tăng batch = rơi nhiều hơn
-setInterval(() => createHearts(2), 400);
+// 🌸 giảm tần suất để tránh lag mobile
+setInterval(() => createHearts(1), 800);

@@ -970,7 +970,7 @@ body {
     right: 40px;
 }
 
-/* mobile */
+/* mobile - original styles preserved */
 @media (max-width: 768px) {
     .love-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1093,22 +1093,26 @@ body {
   animation: flyUp linear forwards;
   pointer-events: none;
   will-change: transform, opacity;
+  /* Tối ưu GPU acceleration */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 
+/* Tối ưu animation cho mobile */
 @keyframes flyUp {
   0% {
-    transform: translateX(0) scale(0.8);
+    transform: translate3d(0, 0, 0) scale(0.8);
     opacity: 0;
   }
   10% {
     opacity: 1;
   }
   50% {
-    transform: translateX(-30px) scale(1);
+    transform: translate3d(-30px, -50vh, 0) scale(1);
   }
   100% {
-    transform: translateX(30px) translateY(-110vh) scale(1.2);
+    transform: translate3d(30px, -110vh, 0) scale(1.2);
     opacity: 0;
   }
 }
@@ -1165,11 +1169,51 @@ body {
 }
 @keyframes heartbeat {
   0%, 100% {
-    transform: scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
-    transform: scale(1.2);
+    transform: translate3d(0, 0, 0) scale(1.2);
   }
+}
+
+/* Mobile performance optimization */
+@media (max-width: 768px) {
+    /* Giảm animations trên mobile để cải thiện performance */
+    .heart {
+        animation-duration: 6s !important;
+    }
+    
+    /* Giảm blur effects */
+    .save-date {
+        backdrop-filter: blur(4px);
+    }
+    
+    /* Tối ưu hover effects trên touch devices */
+    .love-img:hover {
+        transform: none;
+    }
+    
+    .photo:hover img {
+        transform: none;
+    }
+    
+    .cta:hover {
+        transform: none;
+    }
+    
+    /* Disable heavy animation on small screens */
+    .ceremony-rings {
+        animation: none;
+    }
+    
+    .family-heart {
+        animation-duration: 2s;
+    }
+    
+    /* Reduce backdrop-filter blur */
+    .wedding-footer {
+        backdrop-filter: blur(2px);
+    }
 }
 
 
